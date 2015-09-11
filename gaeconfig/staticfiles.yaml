@@ -1,0 +1,6 @@
+handlers:
+- url: /images
+  static_dir: static/images
+  http_headers:
+    X-Foo-Header: foo
+    X-Bar-Header: bar value
