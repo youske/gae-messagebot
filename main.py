@@ -10,7 +10,7 @@ except:
   sys.exit ( 'Error: dateutils module not installed' )
 
 from urlparse import urlparse
-from google.appengine.api import users, ndb, urlfetch
+from google.appengine.api import users, urlfetch
 from flask import Flask, request, Response
 
 from flaskext.appengine import(
