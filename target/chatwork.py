@@ -5,6 +5,7 @@ import os,sys
 import urllib
 import time,datetime
 import dateutil.parser
+
 from urlparse import urlparse
 from google.appengine.api import users, urlfetch
 from flask import Flask,request,Response
@@ -13,13 +14,17 @@ from flaskext.appengine import(
   AppEngine, login_required
 )
 
+from acctrl.access import(
+  whitelist_checked
+)
+
 from main import app
  
-from target.config import chatwork
+from config import *
 CHATWORK_API_TOKEN = chatwork['apikey']
 
-@app.route('/chatwork/message/<int:room_id>', methods=['GET','POST'])
-#@login_required
+@app.route('/chatwork/message/<int:room_id>', methods=['POST'])
+@whitelist_checked( REMOTE_WHITELIST )
 def message(room_id):
   Url="https://api.chatwork.com/v1/rooms/%d/messages" % room_id
   form_fields = {
@@ -29,9 +34,6 @@ def message(room_id):
   if request.method == 'POST':
     form_fields['body'] = request.form['body'].encode('utf-8')
  
-  if request.method == 'GET':
-    form_fields['body'] = request.args.get("body").encode('utf-8')
-
   form_data = urllib.urlencode(form_fields)
   result = urlfetch.fetch(url=Url,
     payload=form_data,
@@ -40,20 +42,14 @@ def message(room_id):
 
   return 'ok'
 
-@app.route('/chatwork/task/<int:room_id>', methods=['GET','POST'])
-#@login_required
+@app.route('/chatwork/task/<int:room_id>', methods=['POST'])
+@whitelist_checked( REMOTE_WHITELIST )
 def task(room_id):
   Url="https://api.chatwork.com/v1/rooms/%s/tasks" % room_id
   form_fields = {
    'body': "no task title",
    'to_ids': 1049263 
   }
-
-  if request.method == 'GET':
-    form_fields['body'] = request.args.get("body").encode('utf-8')
-    dt = datetime.datetime.strptime( request.args.get('expire') )
-    form_fields['limit'] = int( time.mktime( dt.timetuple() ) )  
-    form_fields['to_ids'] = request.args.get('to_ids').encode('utf-8')
 
   if request.method == 'POST':
     if request.form.has_key('expire'): 

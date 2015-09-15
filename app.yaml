@@ -14,6 +14,7 @@ includes:
 builtins:
 - deferred: on
 - appstats: on
+- remote_api: on
 
 libraries:
 - name: jinja2

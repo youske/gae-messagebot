@@ -1,17 +1,28 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+#
+#  pushover.net message service
+#  url 
+#  method post 
+#  post params 
+#    subject
+#    body
 
 import os,sys
 import time,datetime
 import urllib
-
 import dateutil.parser
+
 from urlparse import urlparse
 from google.appengine.api import users, urlfetch
 from flask import Flask,request,Response
  
 from flaskext.appengine import(
   AppEngine, login_required
+)
+
+from acctrl.access import(
+  whitelist_checked
 )
 
 from main import app
@@ -21,7 +32,7 @@ PUSHOVER_USER_KEY=pushover['user']
 PUSHOVER_API_TOKEN=pushover['apikey']
 
 @app.route('/pushover/message', methods=['POST'])
-#@login_required
+@whitelist_checked( REMOTE_WHITELIST )
 def pushover_message():
   Url="https://api.pushover.net/1/messages.json"
   form_fields = {
@@ -40,7 +51,7 @@ def pushover_message():
   result = urlfetch.fetch(url=Url,
     payload=form_data,
     method=urlfetch.POST,
-    headers={'Content-Type': 'application/x-www-form-urlencoded' })
+    headers={'Content-Type': 'application/x-www-form-urlencoded'})
 
   return 'ok'
 

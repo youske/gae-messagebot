@@ -4,3 +4,5 @@ import vendor
 # third-party libraries, and override built-ins with newer
 # versions.
 vendor.add('lib')
+
+remoteapi_CUSTOM_ENVIRONMENT_AUTHENTICATION = ('HTTP_X_APPENGINE_INBOUND_APPID',['gae-messagebot'])

@@ -10,12 +10,19 @@ except:
   sys.exit ( 'Error: dateutils module not installed' )
 
 from urlparse import urlparse
+ 
 from google.appengine.api import users, urlfetch
+from google.appengine.ext import ndb
 from flask import Flask, request, Response
 
 from flaskext.appengine import(
   AppEngine, login_required
 )
+
+from acctrl.access import(
+ whitelist_checked  
+)
+
 
 import jinja2
 jn2 = jinja2.Environment(
@@ -36,18 +43,14 @@ from target.chatwork import *
 from target.twitter import * 
 from target.facebook import *
 
-@app.route('/')
-@login_required
-def hello():
-    """Return a friendly HTTP greeting."""
-    return 'ok'
+class whitelist(ndb.Model):
+  host = ndb.StringProperty(required=True)
+  pause = ndb.StringProperty(required=True, choices=set( ['false','true'] ) )
 
-@app.route('/stats')
-@login_required
-def stats():
-    return 'ok'
+  @classmethod
+  def query_host(cls, key):
+    return cls.query()
 
-@app.errorhandler(404)
-def page_not_found(e):
-    """Return a custom 404 error."""
-    return 'Sorry, nothing at this URL.', 404
+
+
+
