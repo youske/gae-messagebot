@@ -35,10 +35,9 @@ def hello():
     """Return a friendly HTTP greeting."""
     return 'ok'
 
-@app.route('/stats')
-@login_required
-def stats():
-    return 'ok'
+@app.route('/view_remote_addr')
+def view_remote_addr():
+    return request.remote_addr
 
 @app.route('/q')
 @whitelist_checked( REMOTE_WHITELIST )

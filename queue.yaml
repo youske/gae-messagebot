@@ -1,0 +1,22 @@
+queue:
+- name: default
+  rate: 1/m
+  bucket_size: 3
+  retry_parameters:
+    task_retry_limit: 10
+
+# retry queue
+- name: request-retry
+  rate: 3/m
+  bucket_size: 5
+  retry_parameters:
+    task_retry_limit: 30
+
+# slow retry queue
+- name: request-slow-retry
+  rate: 1/h
+  bucket_size: 10
+  retry_parameters:
+    task_retry_limit: 60
+
+

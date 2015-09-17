@@ -1,2 +1,3 @@
 alias deploy='appcfg.py -A gae-messagebot update app.yaml'
 alias dev='dev_appserver.py -A gae-messagebot app.yaml --host 0.0.0.0 --port 8088 --admin_port 3000'
+alias upqueue='appcfg.py -A gae-messagebot update_queues .'
