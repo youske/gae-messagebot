@@ -4,6 +4,10 @@ import os,sys
 import time,datetime
 import urllib
 
+from ipaddr.ipaddr import (
+  IPAddress
+) 
+
 try:
   import dateutil.parser
 except:
@@ -36,12 +40,13 @@ app.config['DEBUG'] = True
 gae = AppEngine(app)
 
 from target.general import *
-from target.trello import *
-from target.slack import *
+#from target.trello import *
+#from target.slack import *
 from target.pushover import *
 from target.chatwork import *
-from target.twitter import * 
-from target.facebook import *
+#from target.twitter import * 
+#from target.facebook import *
+#from target.pushbullet import *
 
 class whitelist(ndb.Model):
   host = ndb.StringProperty(required=True)

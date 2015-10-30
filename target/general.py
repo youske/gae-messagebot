@@ -4,6 +4,8 @@ import os,sys
 import time,datetime
 import urllib
 
+from ipaddr.ipaddr import *
+
 try:
   import dateutil.parser
 except:
@@ -57,4 +59,24 @@ def page_not_found(e):
     """Return a custom 404 error."""
     return 'Sorry, nothing at this URL.', 404
 
+@app.route('/iptest')
+@login_required
+@whitelist_checked( REMOTE_WHITELIST )
+def iptest():
+  q0 = IPAddress('66.249.84.127')
 
+  for item in REMOTE_WHITELIST:
+     if item == 'localhost' :
+        continue
+     network = IPNetwork(item)
+     if q0 in network :
+        return 'hit'
+
+  return 'not'
+
+
+def test_ipaddr():
+  network = IPv4Network('192.168.10.0/28')
+  for x in xrange(1, 100):
+    if IPv4Address('192.168.10.%d'%x) in network :
+      print "%d" % x
