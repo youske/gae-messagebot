@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # Copyright 2014 Jon Wayne Parrott, [proppy], Michael R. Bernstein
 #
@@ -21,9 +23,7 @@
 # - Renamed `position` param to `index` to match upcoming SDK interface.
 # - Removed funny arworks docstring.
 
-import site
-import os.path
-import sys
+import site,os.path,sys
 
 
 def add(folder, index=1):

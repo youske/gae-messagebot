@@ -1,20 +1,22 @@
 gae-messagebot
 ==============
 
+
+
+
 #
-
-
     $> sudo apt-get install pip
-
-
-
-
-
     $> pip -r requirements -t ./lib 
 
-# target/config.py
+
+# copying file
+
+    $> cp aliases.template alias
+    $> cp app.yaml.template app.yaml
+    $> cp appengine_config.py.template appengine_config.py
 
 
+# rewrite file
 
 
 # alias
