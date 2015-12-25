@@ -1,7 +1,7 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import os,sys
-import time,datetime
+import os,sys,time,datetime
 import urllib
 
 from ipaddr.ipaddr import *

@@ -1,6 +1,6 @@
-import os,sys
-import time,datetime
-
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+import os,sys,time,datetime
 
 from acctrl.access import(
   whitelist_checked

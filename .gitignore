@@ -55,3 +55,10 @@ docs/_build/
 
 # PyBuilder
 target/
+
+
+# private file
+aliases
+app.yaml
+appengine_config.py
+controllers/config.py
