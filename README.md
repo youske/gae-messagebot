@@ -1,9 +1,6 @@
 gae-messagebot
 ==============
 
-
-
-
 #
     $> sudo apt-get install pip
     $> pip -r requirements -t ./lib 
