@@ -55,6 +55,3 @@ class whitelist(ndb.Model):
   def query_host(cls, key):
     return cls.query()
 
-
-
-
