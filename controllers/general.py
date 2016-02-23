@@ -33,9 +33,15 @@ CHATWORK_API_TOKEN = chatwork['apikey']
 @app.route('/')
 @login_required
 @whitelist_checked( REMOTE_WHITELIST )
-def hello():
+def top():
     """Return a friendly HTTP greeting."""
     return 'ok'
+
+@app.route('/hello')
+@login_required
+def hello():
+    """Return a friendly HTTP greeting."""
+    return 'hello! %s' % request.remote_addr
 
 @app.route('/view_remote_addr')
 def view_remote_addr():
