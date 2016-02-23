@@ -31,7 +31,7 @@ import jinja2
 jn2 = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'],
-    autoescape=True)
+    autoescape=True )
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
