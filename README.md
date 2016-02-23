@@ -2,8 +2,14 @@ gae-messagebot
 ==============
 
 # 導入
+pipにて一部のライブラリを導入するためpipをインストールしておく
+
     $> sudo apt-get install pip
-    $> pip -r requirements -t ./lib 
+
+pipを使った必須ライブラリのインストール、GAE側にもインストールするため libフォルダにインストール
+デプロイ時にこのファイルがappengineのサーバに送られるため必ず実行のこと
+
+    $> pip install -U -r requirements -t lib/ 
 
 ## cloud9での設定
     wget appengine_sdk
