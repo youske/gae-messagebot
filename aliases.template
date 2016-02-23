@@ -1,6 +1,6 @@
 #!/bin/bash -eu
 APPID=<appid>
 alias deploy='appcfg.py -A ${APPID} update app.yaml'
-alias dev='dev_appserver.py -A ${APPID} app.yaml --host 0.0.0.0 --port 8088 --admin_port 3000'
+alias dev='dev_appserver.py -A ${APPID} app.yaml --host ${IP} --port ${PORT} --admin_port 8082'
 alias upqueue='appcfg.py -A ${APPID} update_queues .'
 alias upcron='appcfg.py -A ${APPID} update_cron .'

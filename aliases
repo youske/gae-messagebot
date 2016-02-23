@@ -1,6 +1,0 @@
-#!/bin/bash -eu
-APPID=gae-messagebot
-alias deploy='appcfg.py -A ${APPID} update app.yaml'
-alias dev='dev_appserver.py -A ${APPID} app.yaml --host 0.0.0.0 --port 8088 --admin_port 8889'
-alias upqueue='appcfg.py -A ${APPID} update_queues .'
-alias upcron='appcfg.py -A ${APPID} update_cron .'
